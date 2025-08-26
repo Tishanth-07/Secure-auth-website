@@ -53,8 +53,8 @@ It provides a smooth shopping experience with authentication, role-based access,
 
 ## 📂 Project Structure  
 
-/frontend → Next.js app (UI)
-/backend → Express + MongoDB API
+**/frontend → Next.js app (UI)**
+**/backend → Express + MongoDB API**
 
 
 ---
@@ -66,3 +66,4 @@ We use JWT stored in **cookies** (for web) or **Authorization headers** (for API
 ```js
 const token =
   req.cookies?.token || req.header("Authorization")?.replace("Bearer ", "");
+
