@@ -39,10 +39,10 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     failureRedirect: `${process.env.FRONTEND_URL}/login`,
-    session: false, // ✅ disable session since we're using JWT
+    session: false, 
   }),
   (req, res) => {
-    generateToken(res, req.user._id); // ✅ now works
+    generateToken(res, req.user._id); 
     res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
   }
 );

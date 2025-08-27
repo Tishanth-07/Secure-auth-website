@@ -3,7 +3,6 @@ dotenv.config();
 
 import adminRoutes from "./routes/adminRoutes.js";
 (async () => {
-  // Now import passport AFTER .env is loaded
   const passport = (await import("./config/passport.js")).default;
   const express = (await import("express")).default;
   const cookieParser = (await import("cookie-parser")).default;

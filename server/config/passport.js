@@ -16,20 +16,16 @@ passport.use(
         let user = await User.findOne({ googleId: profile.id });
 
         if (!user) {
-          // Check if email already exists
           const existingUser = await User.findOne({
             email: profile.emails[0].value,
           });
 
           if (existingUser) {
-            // Link Google ID to the existing account
             existingUser.googleId = profile.id;
             existingUser.emailVerified = true;
             await existingUser.save();
             return done(null, existingUser);
           }
-
-          // Otherwise, create new account
           user = await User.create({
             googleId: profile.id,
             name: profile.displayName,
@@ -53,4 +49,4 @@ passport.deserializeUser((id, done) => {
   done(null, id);
 });
 
-export default passport; // ✅ Now it can be imported as default
+export default passport; 

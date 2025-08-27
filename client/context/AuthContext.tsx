@@ -11,7 +11,7 @@ import api from "../utils/api";
 interface User {
   name: string;
   email: string;
-  role: string; // "user" | "admin"
+  role: string; 
 }
 
 interface ProfileResponse {
@@ -42,8 +42,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     console.log("📡 Calling /profile...");
     try {
       const res = await api.get<ProfileResponse>("/profile");
-      console.log("✅ /profile response:", res.data);
-      setUser(res.data.user); // ✅ always from res.data.user
+      console.log(" /profile response:", res.data);
+      setUser(res.data.user); 
       localStorage.setItem("user", JSON.stringify(res.data.user));
     } catch (err) {
       console.error("Fetch user failed", err);
