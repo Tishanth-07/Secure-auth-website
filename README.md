@@ -1,70 +1,180 @@
-# 🛍️ Unimart – E-Commerce Platform  
+<h1 align="center">  Secure Auth Website </h1>
 
-Unimart is a full-stack e-commerce web application built with **Next.js (frontend)** and **Node.js + Express + MongoDB (backend)**.  
-It provides a smooth shopping experience with authentication, role-based access, product catalog, and admin dashboard.  
+A **full-stack authentication and authorization practice project** built using Next.js, Node.js, and MongoDB.
 
----
-
-## 🚀 Features  
-
-### 👤 Authentication & Authorization  
-- User registration & login with **JWT**  
-- Authentication via **HTTP-only cookies** or **Bearer tokens**  
-- Role-based access control (`user`, `admin`)  
-- Middleware protection (`protect`, `adminOnly`)  
-
-### 🛒 Shopping Features  
-- Product catalog with categories (Clothing, Accessories, etc.)  
-- Product details with images, description, price, and ratings  
-- Search & filters for better product discovery  
-- Add to cart & checkout  
-
-### ⚙️ Customization  
-- Frame/product customization options (size, color, background, personal text)  
-- Real-time preview of customizations  
-
-### 📦 Orders & Reviews  
-- Place and manage orders  
-- Write product reviews with rating & comments  
-- Average rating displayed on products  
-
-### 🛠️ Admin Dashboard  
-- Manage products (CRUD)  
-- Manage users & roles  
-- View customer orders  
-- Role-restricted access with `adminOnly` middleware  
+This project focuses purely on secure user authentication workflows, including account creation, email verification, login, password recovery, and JWT-based authorization.
 
 ---
 
-## 🏗️ Tech Stack  
+## 🔹Project Overview
+Secure Auth Website is an individual learning project designed to understand and implement real-world authentication systems.
 
-**Frontend:**  
-- [Next.js](https://nextjs.org/) (React, TypeScript)  
-- Tailwind CSS for styling  
-- Context API for Auth state  
+The application allows users to:
+- Sign up with personal details
+- Verify email via OTP
+- Log in securely
+- Reset forgotten passwords
+- Access protected routes using JWT tokens
 
-**Backend:**  
-- [Node.js](https://nodejs.org/) + [Express](https://expressjs.com/)  
-- MongoDB + Mongoose  
-- JWT for authentication  
-- Multer for image uploads  
-
----
-
-## 📂 Project Structure  
-
-- **/frontend** → Next.js app (UI)  
-- **/backend** → Express + MongoDB API  
-
+This project does not include business logic or dashboards — it is focused entirely on authentication best practices.
 
 ---
 
-## 🔑 Authentication Middleware  
+##  🔹Features  
 
-We use JWT stored in **cookies** (for web) or **Authorization headers** (for API tools).  
+###  User Authentication
+- User signup (First Name, Last Name, Email, Password)
+- Secure login with username/email & password
+- Email verification using OTP
+- Resend verification codes
+- Forgot password & reset password flow
 
-```js
-const token =
-  req.cookies?.token || req.header("Authorization")?.replace("Bearer ", "");
+### Security
+- Password hashing
+- JWT token generation & validation
+- Protected API routes
+- Secure cookie / header-based authentication
+- Input validation & error handling
 
+### Authorization
+- Auth-protected pages
+- Token verification middleware
+- Session handling using JWT
 
+---
+
+## 🔹Technologies Used
+
+### Frontend
+- Next.js
+- React
+- Tailwind CSS
+
+### Backend
+- Node.js
+- Express.js
+- JWT Authentication
+- Nodemailer (Email OTP)
+
+### Database
+- MongoDB (Mongoose)
+
+---
+
+##  🔹Project Structure  
+```
+SECURE-AUTH-APP/
+├── client/
+│   ├── next/
+│   │   ├── app/
+│   │   │   ├── admin/
+│   │   │   ├── components/
+│   │   │   ├── dashboard/
+│   │   │   ├── forgot-password/
+│   │   │   ├── login/
+│   │   │   ├── register/
+│   │   │   ├── reset-password/
+│   │   │   ├── verify-email/
+│   │   │   └── verify-reset-code/
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── context/
+│   │   ├── node_modules/
+│   │   ├── public/
+│   │   ├── utils/
+│   │   ├── .env.local
+│   │   ├── eslint.config.mjs
+│   │   ├── next-env.d.ts
+│   │   ├── next.config.ts
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── postcss.config.mjs
+│   │   ├── README.md
+│   │   └── tsconfig.json
+│   └── (other client files if any)
+└── server/
+    ├── config/
+    │   ├── db.js
+    │   └── passport.js
+    ├── controllers/
+    │   ├── adminController.js
+    │   └── authController.js
+    ├── middleware/
+    │   └── authMiddleware.js
+    ├── models/
+    │   └── User.js
+    ├── node_modules/
+    ├── routes/
+    │   ├── adminRoutes.js
+    │   └── authRoutes.js
+    ├── utils/
+    │   ├── generateToken.js
+    │   └── sendEmail.js
+    ├── .env
+    ├── index.js
+    ├── package-lock.json
+    ├── package.json
+    ├── .gitignore
+└── README.md
+```
+---
+
+## 🔹Getting Started
+
+### Clone the Repository
+`git clone https://github.com/your-username/secure-auth-website.git`
+`cd secure-auth-website`
+
+### Backend Setup
+`cd backend`
+`npm install`
+`npm start`
+
+Create .env file:
+
+```
+PORT=5000
+MONGO_URI= mongodb_url
+JWT_SECRET=jwt_secret
+JWT_EXPIRES=7d
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=ramvadai07@gmail.com
+SMTP_PASS=password
+FRONTEND_URL=http://localhost:3000
+GOOGLE_CLIENT_ID= client id
+GOOGLE_CLIENT_SECRET= code
+GOOGLE_CALLBACK_URL=http://localhost:5000/api/google/callback
+```
+Backend runs at: `http://localhost:5000`
+
+### Frontend Setup
+`cd frontend`
+`npm install`
+`npm run dev`
+
+Frontend runs at: `http://localhost:3000`
+
+---
+
+## 🔹Authentication Flow
+
+1. User registers
+2. OTP sent to email
+3. User verifies account
+4. Login allowed
+5. JWT issued
+6. Protected routes accessible
+7. Password reset via email OTP
+
+---
+
+## 🔹Notes
+- This is a practice project
+- Email uses test or development SMTP
+- No third-party OAuth integration
+- Designed for learning authentication concepts
+
+---
